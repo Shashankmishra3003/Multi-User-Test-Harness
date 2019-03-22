@@ -1,0 +1,8 @@
+Note:
+=====
+Most of this code is still Ammar's work.
+I've added a demo of a hosted resource:
+- The DllLoader hosts a resource made available to all tests.
+- You are required to do that for Project #2 using your Logger.
+
+Jim Fawcett

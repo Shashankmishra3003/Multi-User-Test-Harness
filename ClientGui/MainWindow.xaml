@@ -1,0 +1,111 @@
+﻿<Window x:Class="Project4_client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project4_client"
+        mc:Ignorable="d"
+        Title="Client" Height="750" Width="600" Loaded="Window_Loaded">
+    <!-- 
+    ////////////////////////////////////////////////////////////////////////
+    // MainWindow.xaml.cs - Client UI OOD Project #4                     //
+    //                                                                  //
+    // Source: Jim Fawcett, CSE687 - Object Oriented Design, Fall 2018 //
+    // Author:Shashank Mishra, Syracuse University			          //
+    //		  smishr06@syr.edu                                       //  
+    //////////////////////////////////////////////////////////////////
+  -->
+    
+    <Border Padding="10">
+        <Grid>
+            <TabControl Name="Tab" Background="Azure" FontFamily="tahoma" FontSize="14" FontWeight="Bold" Margin="0,0,0.333,-0.333">
+                <TabItem Header="Test Libraries" Padding="10 5 10 5">
+                    <DockPanel>
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                            <Label>Path:</Label>
+                            <Label Width="20"></Label>
+                            <TextBlock x:Name="CurrPath" x:FieldModifier="public" VerticalAlignment="Center" FontWeight="Medium" FontSize="12"></TextBlock>
+                        </StackPanel>
+                        <Grid Margin="0,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="5"/>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <GridSplitter Grid.Row="0" Grid.ColumnSpan="2" Height="5" HorizontalAlignment="Stretch" Background="#ddd"></GridSplitter>
+                            
+                            <!-- List Box for the Directory-->
+                            <Grid Grid.Column="0" Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Height="30" Orientation="Horizontal">
+                                    <Label Height="30" x:Name="LocalDirLabel" FontWeight="bold">Directories</Label>
+                                    <Label Width="10"></Label>
+                                </StackPanel>
+                                <ListBox Grid.Row="1" x:Name="Dirs" x:FieldModifier="public" FontWeight="Medium" FontSize="12" MouseDoubleClick="Dirs_MouseDoubleClick"/>
+                                <!-- List Box for Files inside the Directory-->
+                            </Grid>
+                            <Grid Grid.Column="1" Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Height="30" Orientation="Horizontal">
+                                    <Label Height="30" x:Name="LocalFileLabel" FontWeight="bold">Files</Label>
+                                    <Label Width="100"></Label>
+                                    <Button Name="buttonSelect" Click="selectDll" Margin="5">Select Dll</Button>
+                                </StackPanel>
+
+                                <ListBox Grid.Row="1" x:Name="Files" x:FieldModifier="public" FontWeight="Medium" FontSize="12" SelectionMode="Single" Margin="4,0,-3.667,0.333"></ListBox>
+
+                            </Grid>
+                            <!-- List Box displaying the Selected Dlls for Test Request-->
+                            <Grid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Height="30" Orientation="Horizontal">
+                                    <Label Height="30">Test Request</Label>
+                                    <Label Width=" 50"/>
+                                    <Button Name="buttonSendFile" Click="sendTr" Margin="5" Padding="4,2">Send Test Request</Button>
+                                    <Label Width="100"/>
+                                    <Button Name="buttonRemove" Click="removeDll" Margin="5">Remove Dll</Button>
+                                </StackPanel>
+
+                                <ListBox Grid.Row="1" Name="selectedDlls" x:FieldModifier="public" Margin="3,0,-2.667,0.333" FontWeight="Medium"/>
+                            </Grid>
+                        </Grid>
+
+                    </DockPanel>
+                    <!-- List Box inside Another tab for Showing the Test Result Files-->
+                </TabItem>
+                <TabItem Name="ResultTab" Header="Test Results" Padding="10 5" Height="29" Margin="-2.333,-2,-1.667,-0.333" VerticalAlignment="Top">
+                    <DockPanel>
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                            <Label>Result Path:</Label>
+                            <Label Width="20"></Label>
+                            <TextBlock x:Name="ResPath" x:FieldModifier="public" VerticalAlignment="Center" FontWeight="Medium" FontSize="12"></TextBlock>
+                        </StackPanel>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <ListBox Grid.Row="1" x:Name="ResFiles" x:FieldModifier="public" FontWeight="Medium" FontSize="12" SelectionMode="Single" MouseDoubleClick="localFiles_MouseDoubleClick" ></ListBox>
+
+                        </Grid>
+                    </DockPanel>
+                </TabItem>
+            </TabControl>
+        </Grid>
+
+    </Border>
+
+</Window>
